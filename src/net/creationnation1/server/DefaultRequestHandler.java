@@ -10,8 +10,9 @@ class DefaultRequestHandler implements RequestHandler {
 
     @Override
     public byte[] accept(InetAddress inetAddress, String requestLine, String[] headers, byte[] body) {
+        ResponseBuilder responseBuilder = new ResponseBuilder();
         byte[] response;
-
+        
         if (requestLine.startsWith("GET / HTTP/1.1")) {
             String content = "<!DOCTYPE html><html><head><title>Example</title></head><body><h1>Hello World!</h1></body></html>";
             ResponseBuilder responseBuilder = new ResponseBuilder();
@@ -21,7 +22,6 @@ class DefaultRequestHandler implements RequestHandler {
                     .setBody(content.getBytes())
                     .build();
         } else {
-            ResponseBuilder responseBuilder = new ResponseBuilder();
             response = responseBuilder.setStatusCode(404).build();
         }
         return response;
