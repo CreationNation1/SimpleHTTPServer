@@ -15,7 +15,6 @@ class DefaultRequestHandler implements RequestHandler {
         
         if (requestLine.startsWith("GET / HTTP/1.1")) {
             String content = "<!DOCTYPE html><html><head><title>Example</title></head><body><h1>Hello World!</h1></body></html>";
-            ResponseBuilder responseBuilder = new ResponseBuilder();
             response = responseBuilder.setResponseLine("HTTP/1.1 200 OK")
                     .addHeader("Content-Type: text/html")
                     .addHeader("Content-Length: 97")
